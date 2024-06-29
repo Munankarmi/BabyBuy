@@ -12,13 +12,13 @@ class AddOrUpdateActivity : AppCompatActivity() {
         binding = ActivityAddOrUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val babyBuyDb = BabyBuydb.getInstance(this.applicationContext)
-        val productDao = babyBuyDb.getProductDao()
+       // val babyBuyDb = BabyBuydb.getInstance(this.applicationContext)
+       // val productDao = babyBuyDb.getProductDao()
 
-        Thread{
-            productDao.getAllProduct()
-            runOnUiThread {  }
-        }.start()
+       // Thread{
+         //   productDao.getAllProduct()
+           // runOnUiThread {  }
+       // }.start()
 
     }
 }

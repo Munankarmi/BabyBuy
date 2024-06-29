@@ -5,12 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import np.edu.ismt.surajmunakarmi_babybuy.PregnancyState
+import np.edu.ismt.surajmunakarmi_babybuy.Product
 import np.edu.ismt.surajmunakarmi_babybuy.R
+import np.edu.ismt.surajmunakarmi_babybuy.dashboard.adapters.RecommendationHorizontalAdapter
+import np.edu.ismt.surajmunakarmi_babybuy.dashboard.adapters.RecommendationVerticalAdapter
+import np.edu.ismt.surajmunakarmi_babybuy.databinding.FragmentRecommendationBinding
+import np.edu.ismt.surajmunakarmi_babybuy.databinding.RecommendationPageLayoutBinding
 
 
 class RecommendationFragment : Fragment() {
 
-
+    private lateinit var binding: FragmentRecommendationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,9 +29,52 @@ class RecommendationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recommendation, container, false)
+        binding = FragmentRecommendationBinding.inflate(layoutInflater, container, false)
+        loadRecommendationPage()
+        return binding.root
     }
 
+    private fun loadRecommendationPage(){
+        val adapter = RecommendationVerticalAdapter(getProductsRecommendation())
+        binding.rvRecommendationPage.layoutManager = LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false)
+        binding.rvRecommendationPage.adapter = adapter
+    }
 
+    private fun getProductsRecommendation(): List<Product>{
+        val products = mutableListOf<Product>()
+
+        val product1 = Product(
+            item = "product1",
+            category = "category 1",
+            price = "$$$$$",
+            description = "describe",
+            itemRequiredTime = PregnancyState.PRE_BIRTH
+        )
+        products.add(product1)
+        val product2 = Product(
+            item = "product2",
+            category = "category 2",
+            price = "$$$$$",
+            description = "describe",
+            itemRequiredTime = PregnancyState.PRE_BIRTH
+        )
+        products.add(product2)
+        val product3 = Product(
+            item = "product3",
+            category = "category 3",
+            price = "$$$$$",
+            description = "describe",
+            itemRequiredTime = PregnancyState.POST_BIRTH
+        )
+        products.add(product3)
+        val product4 = Product(
+            item = "product4",
+            category = "category4",
+            price = "$$$$$",
+            description = "describe",
+            itemRequiredTime = PregnancyState.PRE_BIRTH
+        )
+        products.add(product4)
+        return products
+    }
 }
